@@ -1,0 +1,32 @@
+{
+    "extends": ["react-app"],
+    "rules": {
+        "quotes" : [
+            "error",
+            "double",
+            {
+                "avoidEscape": true,
+                "allowTemplateLiterals": true
+            }
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "no-duplicate-imports": "error",
+        "no-unreachable": "error",
+        "no-const-assign": "error",
+        "no-unused-vars": "error",
+        "no-use-before-define": "error",
+        "no-empty": "error",
+        "no-empty-function": "error",
+        "brace-style" : [ 
+            "error", 
+            "1tbs", 
+            {
+                "allowSingleLine":true
+            } 
+        ],
+        "no-multi-spaces": "error"
+    }
+}
