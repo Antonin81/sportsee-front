@@ -4,7 +4,7 @@ function HorizontalNav() {
   const { id } = useParams();
   return (
     <header>
-      <img src="/logo.svg" alt="" />
+      <img src="img/logo.svg" alt="" />
       <nav>
         <ul>
           <li>
