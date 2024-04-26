@@ -8,23 +8,23 @@ function VerticalNav() {
         <nav>
           <ul>
             <li>
-              <Link to={`/${id}`} className="link-side-nav">
-                <img src="img/sidenav-icon1.svg" alt="" />
+              <Link to={`/user/${id}`} className="link-side-nav">
+                <img src="/img/sidenav-icon1.svg" alt="" />
               </Link>
             </li>
             <li>
-              <Link to={`/${id}`} className="link-side-nav">
-                <img src="img/sidenav-icon2.svg" alt="" />
+              <Link to={`/user/${id}`} className="link-side-nav">
+                <img src="/img/sidenav-icon2.svg" alt="" />
               </Link>
             </li>
             <li>
-              <Link to={`/${id}`} className="link-side-nav">
-                <img src="img/sidenav-icon3.svg" alt="" />
+              <Link to={`/user/${id}`} className="link-side-nav">
+                <img src="/img/sidenav-icon3.svg" alt="" />
               </Link>
             </li>
             <li>
-              <Link to={`/${id}`} className="link-side-nav">
-                <img src="img/sidenav-icon4.svg" alt="" />
+              <Link to={`/user/${id}`} className="link-side-nav">
+                <img src="/img/sidenav-icon4.svg" alt="" />
               </Link>
             </li>
           </ul>

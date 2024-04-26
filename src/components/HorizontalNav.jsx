@@ -4,20 +4,20 @@ function HorizontalNav() {
   const { id } = useParams();
   return (
     <header>
-      <img src="img/logo.svg" alt="" />
+      <img src="/img/logo.svg" alt="" />
       <nav>
         <ul>
           <li>
-            <Link to={`/${id}`}>Accueil</Link>
+            <Link to={`/user/${id}`}>Accueil</Link>
           </li>
           <li>
-            <Link to={`/${id}`}>Profil</Link>
+            <Link to={`/user/${id}`}>Profil</Link>
           </li>
           <li>
-            <Link to={`/${id}`}>Réglage</Link>
+            <Link to={`/user/${id}`}>Réglage</Link>
           </li>
           <li>
-            <Link to={`/${id}`}>Communauté</Link>
+            <Link to={`/user/${id}`}>Communauté</Link>
           </li>
         </ul>
       </nav>
