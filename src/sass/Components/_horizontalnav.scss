@@ -1,0 +1,29 @@
+header {
+  background-color: map-get($map: $colors, $key: "black");
+  align-items: center;
+  gap: 150px;
+  display: flex;
+}
+
+header img {
+  width: 178px;
+}
+
+header nav {
+  flex-grow: 1;
+}
+
+header ul {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+header nav a {
+  color: white;
+  font-size: map-get($map: $font-sizes, $key: "medium");
+  line-height: 24px;
+  font-weight: 500;
+  text-decoration: none;
+}

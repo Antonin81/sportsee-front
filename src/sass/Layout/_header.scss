@@ -1,0 +1,5 @@
+header {
+  background-color: map-get($map: $colors, $key: "black");
+  padding-inline: 30px;
+  height: 90px;
+}

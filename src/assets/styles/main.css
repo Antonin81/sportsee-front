@@ -1,14 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
-
-:root {
-  --color-black: #020203;
-  --color-red: #FF0000;
-  --border-radius: 6px;
-  --font-size-large: 48px;
-  --font-size-medium: 24px;
-  --font-size-small: 12px;
-}
-
 body {
   margin: 0;
   font-family: "Roboto", sans-serif;
@@ -24,26 +14,10 @@ li {
 }
 
 header {
-  background-color: var(--color-black);
-  display: flex;
-  padding-inline: 30px;
+  background-color: #020203;
   align-items: center;
   gap: 150px;
-  height: 90px;
-}
-
-main {
-  margin-left: 114px;
-}
-
-h1 {
-  font-size: var(--font-size-large);
-  font-weight: 500;
-  color: var(--color-black)
-}
-
-h1 span {
-  color: var(--color-red);
+  display: flex;
 }
 
 header img {
@@ -63,22 +37,17 @@ header ul {
 
 header nav a {
   color: white;
-  font-size: var(--font-size-medium);
+  font-size: 24px;
   line-height: 24px;
   font-weight: 500;
   text-decoration: none;
 }
 
 .side-nav {
-  background-color: var(--color-black);
-  width: 114px;
-  position: absolute;
-  left: 0;
-  top: 90px;
-  bottom: 0;
+  background-color: #020203;
 }
 
-.side-nav>div {
+.side-nav > div {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -88,6 +57,7 @@ header nav a {
 
 .side-nav nav {
   width: 64px;
+  margin-bottom: 80px;
 }
 
 .side-nav ul {
@@ -103,15 +73,47 @@ header nav a {
   background-color: white;
   width: 64px;
   height: 64px;
-  border-radius: var(--border-radius);
+  border-radius: 6px;
 }
 
 .copyright-text {
   color: white;
-  font-size: var(--font-size-small);
+  font-size: 12px;
   white-space: nowrap;
   position: absolute;
   bottom: 60px;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
 }
+
+header {
+  background-color: #020203;
+  padding-inline: 30px;
+  height: 90px;
+}
+
+main {
+  margin-left: 114px;
+  padding: 50px 100px;
+}
+
+.side-nav {
+  width: 114px;
+  position: absolute;
+  left: 0;
+  top: 90px;
+  bottom: 0;
+}
+
+h1 {
+  font-size: 48px;
+  font-weight: 500;
+  color: #020203;
+  margin: 0;
+}
+
+h1 span {
+  color: #ff0000;
+}
+
+/*# sourceMappingURL=main.css.map */

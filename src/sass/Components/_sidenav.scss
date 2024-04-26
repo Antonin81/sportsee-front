@@ -1,0 +1,42 @@
+.side-nav {
+  background-color: map-get($map: $colors, $key: "black");
+}
+
+.side-nav > div {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.side-nav nav {
+  width: 64px;
+  margin-bottom: 80px;
+}
+
+.side-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.link-side-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  width: 64px;
+  height: 64px;
+  border-radius: $border-radius;
+}
+
+.copyright-text {
+  color: white;
+  font-size: map-get($map: $font-sizes, $key: "small");
+  white-space: nowrap;
+  position: absolute;
+  bottom: 60px;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
