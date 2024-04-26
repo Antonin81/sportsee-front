@@ -53,6 +53,7 @@ header nav a {
   flex-direction: column;
   align-items: center;
   height: 100%;
+  justify-content: center;
 }
 
 .side-nav nav {

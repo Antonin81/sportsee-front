@@ -1,28 +1,29 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function VerticalNav() {
+  const { id } = useParams();
   return (
     <div className="side-nav">
       <div>
         <nav>
           <ul>
             <li>
-              <Link to={"/"} className="link-side-nav">
+              <Link to={`/${id}`} className="link-side-nav">
                 <img src="sidenav-icon1.svg" alt="" />
               </Link>
             </li>
             <li>
-              <Link to={"/"} className="link-side-nav">
+              <Link to={`/${id}`} className="link-side-nav">
                 <img src="sidenav-icon2.svg" alt="" />
               </Link>
             </li>
             <li>
-              <Link to={"/"} className="link-side-nav">
+              <Link to={`/${id}`} className="link-side-nav">
                 <img src="sidenav-icon3.svg" alt="" />
               </Link>
             </li>
             <li>
-              <Link to={"/"} className="link-side-nav">
+              <Link to={`/${id}`} className="link-side-nav">
                 <img src="sidenav-icon4.svg" alt="" />
               </Link>
             </li>

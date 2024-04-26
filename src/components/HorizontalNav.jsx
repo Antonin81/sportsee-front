@@ -1,22 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function HorizontalNav() {
+  const { id } = useParams();
   return (
     <header>
       <img src="/logo.svg" alt="" />
       <nav>
         <ul>
           <li>
-            <Link to={`/`}>Accueil</Link>
+            <Link to={`/${id}`}>Accueil</Link>
           </li>
           <li>
-            <Link to={`/`}>Profil</Link>
+            <Link to={`/${id}`}>Profil</Link>
           </li>
           <li>
-            <Link to={`/`}>Réglage</Link>
+            <Link to={`/${id}`}>Réglage</Link>
           </li>
           <li>
-            <Link to={`/`}>Communauté</Link>
+            <Link to={`/${id}`}>Communauté</Link>
           </li>
         </ul>
       </nav>

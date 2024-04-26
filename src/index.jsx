@@ -9,6 +9,7 @@ root.render(
   <React.StrictMode>
     <Router>
       <Routes>
+        <Route exact path="/:id" element={<Dashboard />} />
         <Route exact path="*" element={<Dashboard />} />
       </Routes>
     </Router>
