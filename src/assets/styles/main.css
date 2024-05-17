@@ -117,4 +117,9 @@ h1 span {
   color: #ff0000;
 }
 
+.chart-container {
+  background-color: "#FBFBFB";
+  border-radius: 6px;
+}
+
 /*# sourceMappingURL=main.css.map */

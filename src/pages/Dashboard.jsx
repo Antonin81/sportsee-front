@@ -10,6 +10,7 @@ import {
   useFetchActivityTypes,
   useFetchKeyData,
 } from "../utils/hooks";
+import BarChart from "../components/BarChart";
 
 function Dashboard() {
   const { id } = useParams();
@@ -106,6 +107,9 @@ function Dashboard() {
       <main>
         <VerticalNav />
         {userInfosError ? displayError() : displayLoading()}
+        <div id="charts-section">
+          <BarChart />
+        </div>
       </main>
     </React.Fragment>
   );
