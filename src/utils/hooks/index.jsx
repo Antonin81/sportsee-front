@@ -91,11 +91,11 @@ export function useFetchObjectiveCompletion(id) {
   const [errorHere, setErrorHere] = useState(error);
   useEffect(() => {
     if (!isDataLoading && data) {
-      if (!data.data || !data.data.score) {
+      if (!data.data || !data.data.todayScore) {
         setErrorHere(true);
         setIsLoading(false);
       } else {
-        setObjectiveCompletion(data.data.score);
+        setObjectiveCompletion(data.data.todayScore);
         setIsLoading(false);
       }
     }
