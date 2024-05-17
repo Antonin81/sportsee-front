@@ -75,7 +75,7 @@ function Dashboard() {
     console.log("User story 10 : ", userKeyData, userKeyDataError);
   }
 
-  function displayError() {
+  function ErrorComponent() {
     if (id != null) {
       return (
         <h1>
@@ -87,7 +87,7 @@ function Dashboard() {
     return <h1>Votre url est incorrecte...</h1>;
   }
 
-  function displayLoading() {
+  function LoadingComponent() {
     if (userInfosLoading) {
       return <p>Loading</p>;
     }
@@ -106,7 +106,8 @@ function Dashboard() {
       <HorizontalNav />
       <main>
         <VerticalNav />
-        {userInfosError ? displayError() : displayLoading()}
+        {userInfosError && <ErrorComponent />}
+        {!userInfosError && <LoadingComponent />}
         <div id="charts-section">
           <BarChart />
         </div>
