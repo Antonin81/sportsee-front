@@ -74,32 +74,38 @@ function Dashboard() {
     console.log("User story 10 : ", userKeyData, userKeyDataError);
   }
 
+  function displayError() {
+    if (id != null) {
+      return (
+        <h1>
+          Aucun utilisateur portant l'identifiant "<span>{id}</span>" n'a été
+          trouvé...
+        </h1>
+      );
+    }
+    return <h1>Votre url est incorrecte...</h1>;
+  }
+
+  function displayLoading() {
+    if (userInfosLoading) {
+      return <p>Loading</p>;
+    }
+    return (
+      <h1>
+        Bonjour{" "}
+        <span>
+          {userInfos.firstName ? userInfos.firstName : "Oups, pas de prénom"}
+        </span>
+      </h1>
+    );
+  }
+
   return (
     <React.Fragment>
       <HorizontalNav />
       <main>
         <VerticalNav />
-        {userInfosError ? (
-          id != null ? (
-            <h1>
-              Aucun utilisateur portant l'identifiant "<span>{id}</span>" n'a
-              été trouvé...
-            </h1>
-          ) : (
-            <h1>Votre url est incorrecte...</h1>
-          )
-        ) : userInfosLoading ? (
-          <p>Loading</p>
-        ) : (
-          <h1>
-            Bonjour{" "}
-            <span>
-              {userInfos.firstName
-                ? userInfos.firstName
-                : "Oups, pas de prénom"}
-            </span>
-          </h1>
-        )}
+        {userInfosError ? displayError() : displayLoading()}
       </main>
     </React.Fragment>
   );
