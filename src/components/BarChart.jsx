@@ -57,12 +57,6 @@ function BarChart({ data }) {
 
       svg
         .append("g")
-        .attr("transform", `translate(${marginLeft},0)`)
-        .attr("class", "axis-to-remove")
-        .call(d3.axisLeft(y1).tickSizeOuter(0));
-
-      svg
-        .append("g")
         .attr("transform", `translate(0,${height - marginBottom})`)
         .call(
           d3.axisBottom(x).tickSizeOuter(0).tickSizeInner(0).tickPadding(15)
@@ -119,8 +113,6 @@ function BarChart({ data }) {
         .on("mouseout", () => {
           d3.select(".tooltip").style("display", "none");
         });
-
-      svg.selectAll(".axis-to-remove").remove();
     }
   }, [data]);
 
