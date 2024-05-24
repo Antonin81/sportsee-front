@@ -104,7 +104,7 @@ function BarChart({ data }) {
         .join("rect")
         .attr("x", (d) => x(d.day) + x.bandwidth() / 2 - 11)
         .attr("y", (d) => y2(d.kilogram))
-        .attr("height", (d) => y2(minWeight - 1) - y2(d.kilogram))
+        .attr("height", (d) => 270 - y2(d.kilogram))
         .attr("width", 7)
         .attr("rx", 3)
         .on("mouseover", (e, d) => {
