@@ -53,7 +53,7 @@ function BarChart({ data }) {
         .selectAll("line")
         .style("stroke-dasharray", "3, 3");
 
-      svg.selectAll(".domain").remove();
+      svg.select(".domain").remove();
 
       svg
         .append("g")
