@@ -1,13 +1,20 @@
 $colors: (
   "black": #020203,
   "red": #ff0000,
-  "light-gray": "#FBFBFB",
+  "darker-red": #e60000,
+  "very-light-gray": #fbfbfb,
+  "light-gray": #dedede,
+  "gray": #9b9eac,
+  "medium-gray": #74798c,
+  "dark-gray": #282d30,
 );
 
 $border-radius: 6px;
 
 $font-sizes: (
-  "small": 12px,
+  "very-small": 12px,
+  "small": 14px,
+  "medium-small": 15px,
   "medium": 24px,
   "large": 48px,
 );

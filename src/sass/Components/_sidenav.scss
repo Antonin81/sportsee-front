@@ -34,7 +34,7 @@
 
 .copyright-text {
   color: white;
-  font-size: map-get($map: $font-sizes, $key: "small");
+  font-size: map-get($map: $font-sizes, $key: "very-small");
   white-space: nowrap;
   position: absolute;
   bottom: 60px;

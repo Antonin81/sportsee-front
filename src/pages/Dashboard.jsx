@@ -87,7 +87,7 @@ function Dashboard() {
     return <h1>Votre url est incorrecte...</h1>;
   }
 
-  function LoadingComponent() {
+  function EndComponent() {
     if (userInfosLoading) {
       return <p>Loading</p>;
     }
@@ -97,7 +97,16 @@ function Dashboard() {
         <span>
           {userInfos.firstName ? userInfos.firstName : "Oups, pas de prénom"}
         </span>
+        <ChartSectionComponent />
       </h1>
+    );
+  }
+
+  function ChartSectionComponent() {
+    return (
+      <div id="charts-section">
+        {!userActivityError && <BarChart data={userActivity} />}
+      </div>
     );
   }
 
@@ -107,10 +116,7 @@ function Dashboard() {
       <main>
         <VerticalNav />
         {userInfosError && <ErrorComponent />}
-        {!userInfosError && <LoadingComponent />}
-        <div id="charts-section">
-          <BarChart data={userActivity} />
-        </div>
+        {!userInfosError && <EndComponent />}
       </main>
     </React.Fragment>
   );

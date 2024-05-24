@@ -87,6 +87,58 @@ header nav a {
   transform: rotate(180deg);
 }
 
+.bar-chart-container {
+  padding: 25px 30px;
+}
+.bar-chart-container .top-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.bar-chart-container .legend-section {
+  display: flex;
+  gap: 32px;
+}
+.bar-chart-container .legend-section p {
+  margin: 0;
+  font-weight: 500;
+  font-size: 14px;
+  color: #74798c;
+}
+.bar-chart-container .legend-section > div {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.bar-chart-container .tick line {
+  color: #dedede;
+}
+.bar-chart-container .barchart-label {
+  color: #9b9eac;
+  font-weight: 500;
+  font-size: 14px;
+}
+.bar-chart-container .legend-dot {
+  width: 8px;
+  aspect-ratio: 1/1;
+  border-radius: 1000px;
+}
+.bar-chart-container .legend-dot-black {
+  background-color: #282d30;
+}
+.bar-chart-container .legend-dot-red {
+  background-color: #e60000;
+}
+.bar-chart-container h2 {
+  margin: 0;
+  color: #282d30;
+  font-size: 15px;
+}
+.bar-chart-container svg {
+  max-width: 100%;
+  height: auto;
+}
+
 header {
   background-color: #020203;
   padding-inline: 30px;
@@ -118,7 +170,7 @@ h1 span {
 }
 
 .chart-container {
-  background-color: "#FBFBFB";
+  background-color: #fbfbfb;
   border-radius: 6px;
 }
 

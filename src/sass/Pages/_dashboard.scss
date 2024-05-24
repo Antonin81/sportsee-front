@@ -10,6 +10,6 @@ h1 span {
 }
 
 .chart-container {
-  background-color: map-get($map: $colors, $key: "light-gray");
+  background-color: map-get($map: $colors, $key: "very-light-gray");
   border-radius: $border-radius;
 }
