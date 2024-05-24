@@ -9,7 +9,13 @@ h1 span {
   color: map-get($map: $colors, $key: "red");
 }
 
+.charts-container {
+  margin-top: 75px;
+}
+
 .chart-container {
   background-color: map-get($map: $colors, $key: "very-light-gray");
   border-radius: $border-radius;
+  width: 835px;
+  height: 320px;
 }

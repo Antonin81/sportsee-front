@@ -92,13 +92,18 @@ function Dashboard() {
       return <p>Loading</p>;
     }
     return (
-      <h1>
-        Bonjour{" "}
-        <span>
-          {userInfos.firstName ? userInfos.firstName : "Oups, pas de prénom"}
-        </span>
-        <ChartSectionComponent />
-      </h1>
+      <React.Fragment>
+        <h1>
+          Bonjour{" "}
+          <span>
+            {userInfos.firstName ? userInfos.firstName : "Oups, pas de prénom"}
+          </span>
+        </h1>
+        <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
+        <div className="charts-container">
+          <ChartSectionComponent />
+        </div>
+      </React.Fragment>
     );
   }
 

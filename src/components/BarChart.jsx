@@ -2,7 +2,7 @@ import * as d3 from "d3";
 import { React, useEffect, useRef } from "react";
 
 function BarChart({ data }) {
-  const width = 928;
+  const width = 800;
   const height = 300;
   const marginTop = 30;
   const marginRight = 60;
@@ -82,7 +82,19 @@ function BarChart({ data }) {
         .attr("y", (d) => y1(d.calories))
         .attr("height", (d) => y1(0) - y1(d.calories))
         .attr("width", 7)
-        .attr("rx", 3);
+        .attr("rx", 3)
+        .on("mouseover", (e, d) => {
+          const [mx, my] = d3.pointer(e);
+          console.log(mx, my);
+          d3.select(".tooltip")
+            .style("top", `${my - 50}px`)
+            .style("left", `${mx + 20}px`)
+            .style("display", `block`)
+            .html(`<p>${d.kilogram}kg</p><p>${d.calories}Kcal</p>`);
+        })
+        .on("mouseout", () => {
+          d3.select(".tooltip").style("display", "none");
+        });
 
       svg
         .append("g")
@@ -94,7 +106,19 @@ function BarChart({ data }) {
         .attr("y", (d) => y2(d.kilogram))
         .attr("height", (d) => y2(minWeight - 1) - y2(d.kilogram))
         .attr("width", 7)
-        .attr("rx", 3);
+        .attr("rx", 3)
+        .on("mouseover", (e, d) => {
+          const [mx, my] = d3.pointer(e);
+          console.log(mx, my);
+          d3.select(".tooltip")
+            .style("top", `${my - 50}px`)
+            .style("left", `${mx + 20}px`)
+            .style("display", `block`)
+            .html(`<p>${d.kilogram}kg</p><p>${d.calories}Kcal</p>`);
+        })
+        .on("mouseout", () => {
+          d3.select(".tooltip").style("display", "none");
+        });
 
       svg.selectAll(".axis-to-remove").remove();
     }
@@ -115,7 +139,9 @@ function BarChart({ data }) {
           </div>
         </div>
       </div>
-      <div ref={ref}></div>
+      <div ref={ref} className="bottom-section">
+        <div className="tooltip hidden"></div>
+      </div>
     </div>
   );
 }
