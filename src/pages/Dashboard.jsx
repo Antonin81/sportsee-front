@@ -109,7 +109,7 @@ function Dashboard() {
         {userInfosError && <ErrorComponent />}
         {!userInfosError && <LoadingComponent />}
         <div id="charts-section">
-          <BarChart />
+          <BarChart data={userActivity} />
         </div>
       </main>
     </React.Fragment>
