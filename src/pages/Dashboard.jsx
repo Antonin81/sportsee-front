@@ -2,24 +2,14 @@ import React from "react";
 import HorizontalNav from "../components/HorizontalNav";
 import VerticalNav from "../components/VerticalNav";
 import { useParams } from "react-router-dom";
-import {
-  useFetchInfos,
-  useFetchActivity,
-  useFetchAverageSessions,
-  useFetchObjectiveCompletion,
-  useFetchActivityTypes,
-  useFetchKeyData,
-} from "../utils/hooks";
+import { useFetchActivityTypes } from "../utils/hooks/useFetchActivityTypes";
+import { useFetchAverageSessions } from "../utils/hooks/useFetchAverageSessions";
+import { useFetchActivity } from "../utils/hooks/useFetchActivity";
+import { useFetchAllUserInfos } from "../utils/hooks/useFetchAllUserInfos";
 import BarChart from "../components/BarChart";
 
 function Dashboard() {
   const { id } = useParams();
-
-  const {
-    data: userInfos,
-    isLoading: userInfosLoading,
-    error: userInfosError,
-  } = useFetchInfos(id);
 
   const {
     data: userActivity,
@@ -34,32 +24,24 @@ function Dashboard() {
   } = useFetchAverageSessions(id);
 
   const {
-    data: userObjectiveCompletion,
-    isLoading: userObjectiveCompletionLoading,
-    error: userObjectiveCompletionError,
-  } = useFetchObjectiveCompletion(id);
-
-  const {
     data: userActivityTypes,
     isLoading: userActivityTypesLoading,
     error: userActivityTypesError,
   } = useFetchActivityTypes(id);
 
   const {
-    data: userKeyData,
-    isLoading: userKeyDataLoading,
-    error: userKeyDataError,
-  } = useFetchKeyData(id);
+    data: allUserData,
+    isLoading: isAllUserDataLoading,
+    error: allUserDataError,
+  } = useFetchAllUserInfos(id);
 
   if (
-    !userInfosLoading &&
     !userActivityLoading &&
     !userAverageSessionsLoading &&
-    !userObjectiveCompletionLoading &&
     !userActivityTypesLoading &&
-    !userKeyDataLoading
+    !isAllUserDataLoading
   ) {
-    console.log("User story 5 : ", userInfos, userInfosError);
+    console.log("User story 5 : ", allUserData.userInfos, allUserDataError);
     console.log("User story 6 : ", userActivity, userActivityError);
     console.log(
       "User story 7 : ",
@@ -68,11 +50,11 @@ function Dashboard() {
     );
     console.log(
       "User story 8 : ",
-      userObjectiveCompletion,
-      userObjectiveCompletionError
+      allUserData.objectiveCompletion,
+      allUserDataError
     );
     console.log("User story 9 : ", userActivityTypes, userActivityTypesError);
-    console.log("User story 10 : ", userKeyData, userKeyDataError);
+    console.log("User story 10 : ", allUserData.keyData, allUserDataError);
   }
 
   function ErrorComponent() {
@@ -88,7 +70,7 @@ function Dashboard() {
   }
 
   function EndComponent() {
-    if (userInfosLoading) {
+    if (isAllUserDataLoading) {
       return <p>Loading</p>;
     }
     return (
@@ -96,7 +78,9 @@ function Dashboard() {
         <h1>
           Bonjour{" "}
           <span>
-            {userInfos.firstName ? userInfos.firstName : "Oups, pas de prénom"}
+            {allUserData.userInfos.firstName
+              ? allUserData.userInfos.firstName
+              : "Oups, pas de prénom"}
           </span>
         </h1>
         <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
@@ -120,8 +104,8 @@ function Dashboard() {
       <HorizontalNav />
       <main>
         <VerticalNav />
-        {userInfosError && <ErrorComponent />}
-        {!userInfosError && <EndComponent />}
+        {allUserDataError && <ErrorComponent />}
+        {!allUserDataError && <EndComponent />}
       </main>
     </React.Fragment>
   );
