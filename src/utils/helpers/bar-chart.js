@@ -74,8 +74,8 @@ export function initBarChart({ ref, data }) {
         .attr("width", 7)
         .attr("rx", 3)
         .on("mouseover", (e, d) => {
-            const mx = e.clientX;
-            const my = e.clientY;
+            const mx = e.clientX - ref.current.offsetLeft;
+            const my = e.clientY - ref.current.offsetTop;
             d3.select(".tooltip")
                 .style("top", `${my - 50}px`)
                 .style("left", `${mx + 20}px`)
@@ -98,8 +98,8 @@ export function initBarChart({ ref, data }) {
         .attr("width", 7)
         .attr("rx", 3)
         .on("mouseover", (e, d) => {
-            const mx = e.clientX;
-            const my = e.clientY;
+            const mx = e.clientX - ref.current.offsetLeft;
+            const my = e.clientY - ref.current.offsetTop;
             d3.select(".tooltip")
                 .style("top", `${my - 50}px`)
                 .style("left", `${mx + 20}px`)

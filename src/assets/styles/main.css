@@ -149,6 +149,9 @@ header nav a {
   max-width: 100%;
   height: auto;
 }
+.bar-chart-container .bottom-section {
+  position: relative;
+}
 
 header {
   background-color: #020203;
