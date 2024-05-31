@@ -20,10 +20,11 @@ export function useFetchAllUserInfos(id) {
         setErrorHere(true);
         setIsLoading(false);
       } else {
+        const score = data.data.todayScore
+          ? data.data.todayScore
+          : data.data.score;
         setGeneralInfos(data.data.userInfos);
-        setObjectiveCompletion(
-          data.data.todayScore ? data.data.todayScore : data.data.score
-        );
+        setObjectiveCompletion(score);
         setKeyData(data.data.keyData);
         setIsLoading(false);
       }
