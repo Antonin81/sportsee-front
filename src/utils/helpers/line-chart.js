@@ -4,7 +4,7 @@ export function initLineChart({ ref, data }) {
     const width = 260;
     const height = 200;
     const marginTop = 1;
-    const marginBottom = 80;
+    const marginBottom = 30;
 
     d3.select(ref.current).select("svg").remove();
 

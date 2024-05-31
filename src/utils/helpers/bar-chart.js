@@ -2,11 +2,11 @@ import * as d3 from "d3";
 
 export function initBarChart({ ref, data }) {
     const width = 800;
-    const height = 300;
+    const height = 150;
     const marginTop = 30;
     const marginRight = 60;
     const marginBottom = 30;
-    const marginLeft = 80;
+    const marginLeft = 20;
 
     function indexesArray(array) {
         let arrayToReturn = [];
@@ -55,6 +55,7 @@ export function initBarChart({ ref, data }) {
         .call(
             d3
                 .axisRight(y2)
+                .ticks(3)
                 .tickSizeOuter(0)
                 .tickSizeInner(-width + marginLeft + marginRight)
                 .tickPadding(45)
@@ -108,7 +109,7 @@ export function initBarChart({ ref, data }) {
         // .attr("x", (d) => x(d.day) + x.bandwidth() / 2 - 11)
         .attr("x", (d) => x(`${data.indexOf(d) + 1}`) + x.bandwidth() / 2 - 11)
         .attr("y", (d) => y2(d.kilogram))
-        .attr("height", (d) => 270 - y2(d.kilogram))
+        .attr("height", (d) => 120 - y2(d.kilogram))
         .attr("width", 7)
         .attr("rx", 3)
         .on("mouseover", (e, d) => {

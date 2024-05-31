@@ -95,8 +95,24 @@ function Dashboard() {
   function ChartSectionComponent() {
     return (
       <div id="charts-section">
-        {!userActivityError && <BarChart data={userActivity} />}
-        {!userAverageSessionsError && <LineChart data={userAverageSessions} />}
+        <div className="flex">
+          <div className="flex-column charts-left-section">
+            {!userActivityError && <BarChart data={userActivity} />}
+            <div className="flex">
+              {!userAverageSessionsError && (
+                <LineChart data={userAverageSessions} />
+              )}
+              <div className="chart-container"></div>
+              <div className="chart-container"></div>
+            </div>
+          </div>
+          <div className="flex-column charts-right-section">
+            <div className="chart-container"></div>
+            <div className="chart-container"></div>
+            <div className="chart-container"></div>
+            <div className="chart-container"></div>
+          </div>
+        </div>
       </div>
     );
   }

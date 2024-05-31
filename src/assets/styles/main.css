@@ -1,4 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+.flex {
+  display: flex;
+  gap: 30px;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
 body {
   margin: 0;
   font-family: "Roboto", sans-serif;
@@ -89,9 +100,6 @@ header nav a {
 
 .bar-chart-container {
   padding: 25px 30px;
-  width: 835px;
-  height: 320px;
-  background-color: #fbfbfb;
 }
 .bar-chart-container .top-section {
   display: flex;
@@ -157,14 +165,13 @@ header nav a {
 }
 
 .line-chart-container {
-  background-color: #ff0000;
-  height: 260px;
-  width: 260px;
+  background-color: #ff0000 !important;
+  padding: 30px;
+  padding-bottom: 0;
 }
 .line-chart-container h2 {
   color: rgba(255, 255, 255, 0.5);
-  padding-top: 30px;
-  padding-inline: 30px;
+  margin: 0;
   font-size: 15px;
 }
 .line-chart-container text {
@@ -198,6 +205,7 @@ header {
 main {
   margin-left: 114px;
   padding: 50px 100px;
+  height: calc(100vh - 190px);
 }
 
 .side-nav {
@@ -225,6 +233,19 @@ h1 span {
 
 .chart-container {
   border-radius: 6px;
+  background-color: #fbfbfb;
+  flex: 1;
+}
+.chart-container svg {
+  width: 100%;
+}
+
+.charts-left-section {
+  width: 75%;
+}
+
+.charts-right-section {
+  width: 25%;
 }
 
 /*# sourceMappingURL=main.css.map */

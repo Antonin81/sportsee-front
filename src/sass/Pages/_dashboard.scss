@@ -15,4 +15,17 @@ h1 span {
 
 .chart-container {
   border-radius: $border-radius;
+  background-color: map-get($map: $colors, $key: "very-light-gray");
+  flex: 1;
+  svg {
+    width: 100%;
+  }
+}
+
+.charts-left-section {
+  width: 75%;
+}
+
+.charts-right-section {
+  width: 25%;
 }
