@@ -7,6 +7,7 @@ import { useFetchAverageSessions } from "../utils/hooks/useFetchAverageSessions"
 import { useFetchActivity } from "../utils/hooks/useFetchActivity";
 import { useFetchAllUserInfos } from "../utils/hooks/useFetchAllUserInfos";
 import BarChart from "../components/BarChart";
+import LineChart from "../components/LineChart";
 
 function Dashboard() {
   const { id } = useParams();
@@ -95,6 +96,7 @@ function Dashboard() {
     return (
       <div id="charts-section">
         {!userActivityError && <BarChart data={userActivity} />}
+        {!userAverageSessionsError && <LineChart data={userAverageSessions} />}
       </div>
     );
   }

@@ -89,6 +89,9 @@ header nav a {
 
 .bar-chart-container {
   padding: 25px 30px;
+  width: 835px;
+  height: 320px;
+  background-color: #fbfbfb;
 }
 .bar-chart-container .top-section {
   display: flex;
@@ -110,7 +113,7 @@ header nav a {
   align-items: center;
   gap: 7px;
 }
-.bar-chart-container .tooltip {
+.bar-chart-container .bar-chart-tooltip {
   position: absolute;
   background-color: #e60000;
   text-align: center;
@@ -118,7 +121,7 @@ header nav a {
   font-size: 14px;
   padding: 5px 10px;
 }
-.bar-chart-container .tooltip.hidden {
+.bar-chart-container .bar-chart-tooltip.hidden {
   display: none;
 }
 .bar-chart-container .tick line {
@@ -151,6 +154,39 @@ header nav a {
 }
 .bar-chart-container .bottom-section {
   position: relative;
+}
+
+.line-chart-container {
+  background-color: #ff0000;
+  height: 260px;
+  width: 260px;
+}
+.line-chart-container h2 {
+  color: rgba(255, 255, 255, 0.5);
+  padding-top: 30px;
+  padding-inline: 30px;
+  font-size: 15px;
+}
+.line-chart-container text {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+.line-chart-container .line-chart-tooltip {
+  position: absolute;
+  background-color: white;
+  text-align: center;
+  color: black;
+  font-size: 14px;
+  padding: 5px 10px;
+}
+.line-chart-container .line-chart-tooltip.hidden {
+  display: none;
+}
+.line-chart-container .bottom-section {
+  position: relative;
+}
+.line-chart-container .bottom-section circle:hover {
+  fill: white;
 }
 
 header {
@@ -188,10 +224,7 @@ h1 span {
 }
 
 .chart-container {
-  background-color: #fbfbfb;
   border-radius: 6px;
-  width: 835px;
-  height: 320px;
 }
 
 /*# sourceMappingURL=main.css.map */

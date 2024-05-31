@@ -26,7 +26,7 @@ function BarChart({ data }) {
         </div>
       </div>
       <div ref={ref} className="bottom-section">
-        <div className="tooltip hidden"></div>
+        <div className="bar-chart-tooltip hidden"></div>
       </div>
     </div>
   );

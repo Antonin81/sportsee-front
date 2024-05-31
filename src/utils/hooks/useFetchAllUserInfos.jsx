@@ -10,17 +10,20 @@ export function useFetchAllUserInfos(id) {
   const [errorHere, setErrorHere] = useState(error);
   useEffect(() => {
     if (!isDataLoading && data) {
+      console.log(data.data);
       if (
         !data.data ||
         !data.data.userInfos ||
-        !data.data.todayScore ||
+        (!data.data.todayScore && !data.data.score) ||
         !data.data.keyData
       ) {
         setErrorHere(true);
         setIsLoading(false);
       } else {
         setGeneralInfos(data.data.userInfos);
-        setObjectiveCompletion(data.data.todayScore);
+        setObjectiveCompletion(
+          data.data.todayScore ? data.data.todayScore : data.data.score
+        );
         setKeyData(data.data.keyData);
         setIsLoading(false);
       }

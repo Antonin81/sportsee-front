@@ -8,9 +8,19 @@ export function initBarChart({ ref, data }) {
     const marginBottom = 30;
     const marginLeft = 80;
 
+    function indexesArray(array) {
+        let arrayToReturn = [];
+        for (let i = 0; i < array.length; i++) {
+            arrayToReturn.push(`${i + 1}`);
+        }
+        return arrayToReturn;
+    }
+
     d3.select(ref.current).select("svg").remove();
 
     const minWeight = d3.min(data, (d) => d.kilogram);
+
+
 
     const svg = d3
         .select(ref.current)
@@ -21,7 +31,10 @@ export function initBarChart({ ref, data }) {
 
     const x = d3
         .scaleBand()
-        .domain(data.map((d) => d.day))
+        .domain(
+            // data.map((d) => d.day)
+            indexesArray(data)
+        )
         .range([marginLeft, width - marginRight]);
 
     const y1 = d3
@@ -61,29 +74,29 @@ export function initBarChart({ ref, data }) {
         .style("stroke", "#dedede");
 
     svg.selectAll(".tick text").attr("class", "barchart-label");
-
+    console.log(data);
     svg
         .append("g")
         .attr("fill", "#E60000")
         .selectAll("rect")
         .data(data)
         .join("rect")
-        .attr("x", (d) => x(d.day) + x.bandwidth() / 2 + 4)
+        .attr("x", (d) => x(`${data.indexOf(d) + 1}`) + x.bandwidth() / 2 + 4)
         .attr("y", (d) => y1(d.calories))
         .attr("height", (d) => y1(0) - y1(d.calories))
         .attr("width", 7)
         .attr("rx", 3)
         .on("mouseover", (e, d) => {
-            const mx = e.clientX - ref.current.offsetLeft;
-            const my = e.clientY - ref.current.offsetTop;
-            d3.select(".tooltip")
+            const mx = e.pageX - ref.current.offsetLeft;
+            const my = e.pageY - ref.current.offsetTop;
+            d3.select(".bar-chart-tooltip")
                 .style("top", `${my - 50}px`)
                 .style("left", `${mx + 20}px`)
                 .style("display", `block`)
                 .html(`<p>${d.kilogram}kg</p><p>${d.calories}Kcal</p>`);
         })
         .on("mouseout", () => {
-            d3.select(".tooltip").style("display", "none");
+            d3.select(".bar-chart-tooltip").style("display", "none");
         });
 
     svg
@@ -92,21 +105,22 @@ export function initBarChart({ ref, data }) {
         .selectAll("rect")
         .data(data)
         .join("rect")
-        .attr("x", (d) => x(d.day) + x.bandwidth() / 2 - 11)
+        // .attr("x", (d) => x(d.day) + x.bandwidth() / 2 - 11)
+        .attr("x", (d) => x(`${data.indexOf(d) + 1}`) + x.bandwidth() / 2 - 11)
         .attr("y", (d) => y2(d.kilogram))
         .attr("height", (d) => 270 - y2(d.kilogram))
         .attr("width", 7)
         .attr("rx", 3)
         .on("mouseover", (e, d) => {
-            const mx = e.clientX - ref.current.offsetLeft;
-            const my = e.clientY - ref.current.offsetTop;
-            d3.select(".tooltip")
+            const mx = e.pageX - ref.current.offsetLeft;
+            const my = e.pageY - ref.current.offsetTop;
+            d3.select(".bar-chart-tooltip")
                 .style("top", `${my - 50}px`)
                 .style("left", `${mx + 20}px`)
                 .style("display", `block`)
                 .html(`<p>${d.kilogram}kg</p><p>${d.calories}Kcal</p>`);
         })
         .on("mouseout", () => {
-            d3.select(".tooltip").style("display", "none");
+            d3.select(".bar-chart-tooltip").style("display", "none");
         });
 }
