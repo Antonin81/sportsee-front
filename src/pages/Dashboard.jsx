@@ -8,6 +8,7 @@ import { useFetchActivity } from "../utils/hooks/useFetchActivity";
 import { useFetchAllUserInfos } from "../utils/hooks/useFetchAllUserInfos";
 import BarChart from "../components/BarChart";
 import LineChart from "../components/LineChart";
+import RadarChart from "../components/RadarChart";
 
 function Dashboard() {
   const { id } = useParams();
@@ -102,7 +103,9 @@ function Dashboard() {
               {!userAverageSessionsError && (
                 <LineChart data={userAverageSessions} />
               )}
-              <div className="chart-container"></div>
+              {!userActivityTypesError && (
+                <RadarChart data={userActivityTypes} />
+              )}
               <div className="chart-container"></div>
             </div>
           </div>

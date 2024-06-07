@@ -19,7 +19,7 @@ export function initBarChart({ ref, data }) {
     d3.select(ref.current).select("svg").remove();
 
     const minWeight = d3.min(data, (d) => d.kilogram);
-
+    const maxWeight = d3.max(data, (d) => d.kilogram);
 
 
     const svg = d3
@@ -32,7 +32,6 @@ export function initBarChart({ ref, data }) {
     const x = d3
         .scaleBand()
         .domain(
-            // data.map((d) => d.day)
             indexesArray(data)
         )
         .range([marginLeft, width - marginRight]);
@@ -55,7 +54,7 @@ export function initBarChart({ ref, data }) {
         .call(
             d3
                 .axisRight(y2)
-                .ticks(3)
+                .ticks(2)
                 .tickSizeOuter(0)
                 .tickSizeInner(-width + marginLeft + marginRight)
                 .tickPadding(45)
@@ -75,7 +74,47 @@ export function initBarChart({ ref, data }) {
         .style("stroke", "#dedede");
 
     svg.selectAll(".tick text").attr("class", "barchart-label");
-    console.log(data);
+
+    function mouseOver(e, d) {
+        const mx = e.pageX - ref.current.offsetLeft;
+        const my = e.pageY - ref.current.offsetTop;
+        d3.selectAll(".back-rectangle")
+            .filter((data) => data === d)
+            .attr("fill", "#00000015");
+        d3.select(".bar-chart-tooltip")
+            .style("top", `${my - 50}px`)
+            .style("left", `${mx + 20}px`)
+            .style("display", `block`)
+            .html(`<p>${d.kilogram}kg</p><p>${d.calories}Kcal</p>`);
+    }
+
+    function mouseOut(e, d) {
+        d3.selectAll(".back-rectangle")
+            .filter((data) => data === d)
+            .attr("fill", "#00000000");
+        d3.select(".bar-chart-tooltip").style("display", "none");
+    }
+
+    svg
+        .append("g")
+        // .attr("fill", "#00000015")
+        .selectAll("rect")
+        .data(data)
+        .join("rect")
+        .attr("fill", "#00000000")
+        .attr("class", "back-rectangle")
+        .attr("x", (d) => x(`${data.indexOf(d) + 1}`) + x.bandwidth() / 2 - 56 / 2)
+        .attr("y", () => y2(maxWeight))
+        .attr("height", () => 120 - y2(maxWeight))
+        .attr("width", 56)
+        .attr("rx", 3)
+        .on("mouseover", (e, d) => {
+            mouseOver(e, d);
+        })
+        .on("mouseout", (e, d) => {
+            mouseOut(e, d);
+        });
+
     svg
         .append("g")
         .attr("fill", "#E60000")
@@ -88,16 +127,10 @@ export function initBarChart({ ref, data }) {
         .attr("width", 7)
         .attr("rx", 3)
         .on("mouseover", (e, d) => {
-            const mx = e.pageX - ref.current.offsetLeft;
-            const my = e.pageY - ref.current.offsetTop;
-            d3.select(".bar-chart-tooltip")
-                .style("top", `${my - 50}px`)
-                .style("left", `${mx + 20}px`)
-                .style("display", `block`)
-                .html(`<p>${d.kilogram}kg</p><p>${d.calories}Kcal</p>`);
+            mouseOver(e, d);
         })
-        .on("mouseout", () => {
-            d3.select(".bar-chart-tooltip").style("display", "none");
+        .on("mouseout", (e, d) => {
+            mouseOut(e, d);
         });
 
     svg
@@ -106,22 +139,15 @@ export function initBarChart({ ref, data }) {
         .selectAll("rect")
         .data(data)
         .join("rect")
-        // .attr("x", (d) => x(d.day) + x.bandwidth() / 2 - 11)
         .attr("x", (d) => x(`${data.indexOf(d) + 1}`) + x.bandwidth() / 2 - 11)
         .attr("y", (d) => y2(d.kilogram))
         .attr("height", (d) => 120 - y2(d.kilogram))
         .attr("width", 7)
         .attr("rx", 3)
         .on("mouseover", (e, d) => {
-            const mx = e.pageX - ref.current.offsetLeft;
-            const my = e.pageY - ref.current.offsetTop;
-            d3.select(".bar-chart-tooltip")
-                .style("top", `${my - 50}px`)
-                .style("left", `${mx + 20}px`)
-                .style("display", `block`)
-                .html(`<p>${d.kilogram}kg</p><p>${d.calories}Kcal</p>`);
+            mouseOver(e, d);
         })
-        .on("mouseout", () => {
-            d3.select(".bar-chart-tooltip").style("display", "none");
+        .on("mouseout", (e, d) => {
+            mouseOut(e, d);
         });
 }
