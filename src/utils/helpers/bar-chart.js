@@ -97,7 +97,6 @@ export function initBarChart({ ref, data }) {
 
     svg
         .append("g")
-        // .attr("fill", "#00000015")
         .selectAll("rect")
         .data(data)
         .join("rect")
@@ -107,13 +106,7 @@ export function initBarChart({ ref, data }) {
         .attr("y", () => y2(maxWeight))
         .attr("height", () => 120 - y2(maxWeight))
         .attr("width", 56)
-        .attr("rx", 3)
-        .on("mouseover", (e, d) => {
-            mouseOver(e, d);
-        })
-        .on("mouseout", (e, d) => {
-            mouseOut(e, d);
-        });
+        .attr("rx", 3);
 
     svg
         .append("g")
@@ -125,13 +118,7 @@ export function initBarChart({ ref, data }) {
         .attr("y", (d) => y1(d.calories))
         .attr("height", (d) => y1(0) - y1(d.calories))
         .attr("width", 7)
-        .attr("rx", 3)
-        .on("mouseover", (e, d) => {
-            mouseOver(e, d);
-        })
-        .on("mouseout", (e, d) => {
-            mouseOut(e, d);
-        });
+        .attr("rx", 3);
 
     svg
         .append("g")
@@ -143,6 +130,19 @@ export function initBarChart({ ref, data }) {
         .attr("y", (d) => y2(d.kilogram))
         .attr("height", (d) => 120 - y2(d.kilogram))
         .attr("width", 7)
+        .attr("rx", 3);
+
+    svg
+        .append("g")
+        .selectAll(".forward-rectangle")
+        .data(data)
+        .join("rect")
+        .attr("fill", "#00000000")
+        .attr("class", "forward-rectangle")
+        .attr("x", (d) => x(`${data.indexOf(d) + 1}`) + x.bandwidth() / 2 - 56 / 2)
+        .attr("y", () => y2(maxWeight))
+        .attr("height", () => 120 - y2(maxWeight))
+        .attr("width", 56)
         .attr("rx", 3)
         .on("mouseover", (e, d) => {
             mouseOver(e, d);
