@@ -8,6 +8,26 @@ export function initBarChart({ ref, data }) {
     const marginBottom = 30;
     const marginLeft = 20;
 
+    const minWeight = d3.min(data, (d) => d.kilogram);
+    const maxWeight = d3.max(data, (d) => d.kilogram);
+
+    const x = d3
+        .scaleBand()
+        .domain(
+            indexesArray(data)
+        )
+        .range([marginLeft, width - marginRight]);
+    const y1 = d3
+        .scaleLinear()
+        .domain([0, d3.max(data, (d) => d.calories)])
+        .nice()
+        .range([height - marginBottom, marginTop]);
+    const y2 = d3
+        .scaleLinear()
+        .domain([minWeight - 1, d3.max(data, (d) => d.kilogram)])
+        .nice()
+        .range([height - marginBottom, marginTop]);
+
     function indexesArray(array) {
         let arrayToReturn = [];
         for (let i = 0; i < array.length; i++) {
@@ -15,11 +35,26 @@ export function initBarChart({ ref, data }) {
         }
         return arrayToReturn;
     }
+    function mouseOver(e, d) {
+        const mx = e.pageX - ref.current.offsetLeft;
+        const my = e.pageY - ref.current.offsetTop;
+        d3.selectAll(".back-rectangle")
+            .filter((data) => data === d)
+            .attr("fill", "#00000015");
+        d3.select(".bar-chart-tooltip")
+            .style("top", `${my - 50}px`)
+            .style("left", `${mx + 20}px`)
+            .style("display", `block`)
+            .html(`<p>${d.kilogram}kg</p><p>${d.calories}Kcal</p>`);
+    }
+    function mouseOut(e, d) {
+        d3.selectAll(".back-rectangle")
+            .filter((data) => data === d)
+            .attr("fill", "#00000000");
+        d3.select(".bar-chart-tooltip").style("display", "none");
+    }
 
     d3.select(ref.current).select("svg").remove();
-
-    const minWeight = d3.min(data, (d) => d.kilogram);
-    const maxWeight = d3.max(data, (d) => d.kilogram);
 
 
     const svg = d3
@@ -28,25 +63,6 @@ export function initBarChart({ ref, data }) {
         .attr("width", width)
         .attr("height", height)
         .attr("viewBox", [0, 0, width, height]);
-
-    const x = d3
-        .scaleBand()
-        .domain(
-            indexesArray(data)
-        )
-        .range([marginLeft, width - marginRight]);
-
-    const y1 = d3
-        .scaleLinear()
-        .domain([0, d3.max(data, (d) => d.calories)])
-        .nice()
-        .range([height - marginBottom, marginTop]);
-
-    const y2 = d3
-        .scaleLinear()
-        .domain([minWeight - 1, d3.max(data, (d) => d.kilogram)])
-        .nice()
-        .range([height - marginBottom, marginTop]);
 
     svg
         .append("g")
@@ -60,7 +76,7 @@ export function initBarChart({ ref, data }) {
                 .tickPadding(45)
         )
         .selectAll("line")
-        .style("stroke-dasharray", "3, 3");
+        .attr("stroke-dasharray", "3, 3");
 
     svg.select(".domain").remove();
 
@@ -71,29 +87,9 @@ export function initBarChart({ ref, data }) {
             d3.axisBottom(x).tickSizeOuter(0).tickSizeInner(0).tickPadding(15)
         )
         .selectAll(".domain")
-        .style("stroke", "#dedede");
+        .attr("stroke", "#dedede");
 
     svg.selectAll(".tick text").attr("class", "barchart-label");
-
-    function mouseOver(e, d) {
-        const mx = e.pageX - ref.current.offsetLeft;
-        const my = e.pageY - ref.current.offsetTop;
-        d3.selectAll(".back-rectangle")
-            .filter((data) => data === d)
-            .attr("fill", "#00000015");
-        d3.select(".bar-chart-tooltip")
-            .style("top", `${my - 50}px`)
-            .style("left", `${mx + 20}px`)
-            .style("display", `block`)
-            .html(`<p>${d.kilogram}kg</p><p>${d.calories}Kcal</p>`);
-    }
-
-    function mouseOut(e, d) {
-        d3.selectAll(".back-rectangle")
-            .filter((data) => data === d)
-            .attr("fill", "#00000000");
-        d3.select(".bar-chart-tooltip").style("display", "none");
-    }
 
     svg
         .append("g")

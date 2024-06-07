@@ -196,6 +196,16 @@ header nav a {
   fill: white;
 }
 
+.chart-container.radar-chart-container {
+  background-color: #282d30;
+  padding: 10px;
+}
+.chart-container.radar-chart-container .legend-radar-chart {
+  fill: white;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
 header {
   background-color: #020203;
   padding-inline: 30px;

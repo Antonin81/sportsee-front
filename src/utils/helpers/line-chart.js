@@ -6,9 +6,25 @@ export function initLineChart({ ref, data }) {
     const marginTop = 1;
     const marginBottom = 30;
 
-    d3.select(ref.current).select("svg").remove();
-
     const minSession = d3.min(data, (d) => d.sessionLength);
+
+    const x = d3
+        .scalePoint()
+        .domain(data.map((d) => d.day))
+        .range([0, width])
+        .padding(0.1);
+    const y = d3
+        .scaleLinear()
+        .domain([minSession, d3.max(data, (d) => d.sessionLength)])
+        .nice()
+        .range([height - marginBottom, marginTop]);
+    const generateLine = d3
+        .line()
+        .x((d) => x(d.day))
+        .y((d) => y(d.sessionLength))
+        .curve(d3.curveBumpX);
+
+    d3.select(ref.current).select("svg").remove();
 
     const svg = d3
         .select(ref.current)
@@ -34,24 +50,6 @@ export function initLineChart({ ref, data }) {
         .attr("offset", "100%")
         .attr("stop-color", "white");
 
-    const x = d3
-        .scalePoint()
-        .domain(data.map((d) => d.day))
-        .range([0, width])
-        .padding(0.1);
-
-    const y = d3
-        .scaleLinear()
-        .domain([minSession, d3.max(data, (d) => d.sessionLength)])
-        .nice()
-        .range([height - marginBottom, marginTop]);
-
-    const generateLine = d3
-        .line()
-        .x((d) => x(d.day))
-        .y((d) => y(d.sessionLength))
-        .curve(d3.curveBumpX);
-
     svg
         .append("g")
         .attr("transform", `translate(0,${height - marginBottom})`)
@@ -59,7 +57,7 @@ export function initLineChart({ ref, data }) {
             d3.axisBottom(x).tickSizeOuter(0).tickSizeInner(0).tickPadding(15)
         )
         .selectAll(".domain")
-        .style("stroke", "none");
+        .attr("stroke", "none");
 
     svg
         .append("path")

@@ -1,0 +1,9 @@
+.chart-container.radar-chart-container {
+  background-color: map-get($map: $colors, $key: "dark-gray");
+  padding: 10px;
+  .legend-radar-chart {
+    fill: white;
+    font-size: map-get($map: $font-sizes, $key: "very-small");
+    text-transform: capitalize;
+  }
+}
