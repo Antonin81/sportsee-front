@@ -12,7 +12,7 @@ function RadarChart({ data }) {
 
   return (
     <div className="chart-container radar-chart-container">
-      <div ref={ref} className="bottom-section"></div>
+      <div ref={ref}></div>
     </div>
   );
 }
