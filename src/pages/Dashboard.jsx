@@ -110,7 +110,6 @@ function Dashboard() {
               {!allUserDataError && (
                 <RadialBarChart data={allUserData.objectiveCompletion} />
               )}
-              <div className="chart-container"></div>
             </div>
           </div>
           <div className="flex-column charts-right-section">
