@@ -206,6 +206,14 @@ header nav a {
   text-transform: capitalize;
 }
 
+.radial-bar-chart-container {
+  padding: 25px;
+}
+.radial-bar-chart-container h2 {
+  font-size: 15px;
+  margin: 0;
+}
+
 header {
   background-color: #020203;
   padding-inline: 30px;

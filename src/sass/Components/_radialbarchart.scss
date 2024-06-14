@@ -1,0 +1,7 @@
+.radial-bar-chart-container {
+  padding: 25px;
+  h2 {
+    font-size: map-get($map: $font-sizes, $key: "medium-small");
+    margin: 0;
+  }
+}

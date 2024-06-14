@@ -9,6 +9,7 @@ import { useFetchAllUserInfos } from "../utils/hooks/useFetchAllUserInfos";
 import BarChart from "../components/BarChart";
 import LineChart from "../components/LineChart";
 import RadarChart from "../components/RadarChart";
+import RadialBarChart from "../components/RadialBarChart";
 
 function Dashboard() {
   const { id } = useParams();
@@ -105,6 +106,9 @@ function Dashboard() {
               )}
               {!userActivityTypesError && (
                 <RadarChart data={userActivityTypes} />
+              )}
+              {!allUserDataError && (
+                <RadialBarChart data={allUserData.objectiveCompletion} />
               )}
               <div className="chart-container"></div>
             </div>
