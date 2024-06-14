@@ -44,12 +44,14 @@ export function initRadialBarChart({ ref, data }) {
         .style("font-size", "36px")
         .style("font-weight", "bold")
         .style("fill", "#282D30");
+
     svg.append("text")
         .attr("text-anchor", "middle")
         .text("de votre")
         .attr("dy", "30px")
         .style("font-size", "20px")
         .style("fill", "#74798C");
+
     svg.append("text")
         .attr("text-anchor", "middle")
         .text("objectif")
