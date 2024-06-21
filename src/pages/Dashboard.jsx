@@ -39,28 +39,6 @@ function Dashboard() {
     error: allUserDataError,
   } = useFetchAllUserInfos(id);
 
-  if (
-    !userActivityLoading &&
-    !userAverageSessionsLoading &&
-    !userActivityTypesLoading &&
-    !isAllUserDataLoading
-  ) {
-    console.log("User story 5 : ", allUserData.userInfos, allUserDataError);
-    console.log("User story 6 : ", userActivity, userActivityError);
-    console.log(
-      "User story 7 : ",
-      userAverageSessions,
-      userAverageSessionsError
-    );
-    console.log(
-      "User story 8 : ",
-      allUserData.objectiveCompletion,
-      allUserDataError
-    );
-    console.log("User story 9 : ", userActivityTypes, userActivityTypesError);
-    console.log("User story 10 : ", allUserData.keyData, allUserDataError);
-  }
-
   function ErrorComponent() {
     if (id != null) {
       return (
@@ -74,7 +52,12 @@ function Dashboard() {
   }
 
   function EndComponent() {
-    if (isAllUserDataLoading) {
+    if (
+      isAllUserDataLoading ||
+      userActivityLoading ||
+      userAverageSessionsLoading ||
+      userActivityTypesLoading
+    ) {
       return <p>Loading</p>;
     }
     return (
