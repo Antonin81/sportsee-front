@@ -1,0 +1,54 @@
+.keydata-card-container {
+  display: flex;
+  padding: 32px;
+  align-items: center;
+  @media screen and (max-width: 1245px) {
+    padding: 15px;
+  }
+  .img-container {
+    height: 60px;
+    width: 60px;
+    border-radius: $border-radius;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 25px;
+  }
+  .txt-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    > p {
+      font-size: 20px;
+      font-weight: bold;
+      color: map-get($map: $colors, $key: "dark-gray");
+      margin: 0;
+    }
+    > h2 {
+      font-size: map-get($map: $font-sizes, $key: "small");
+      color: map-get($map: $colors, $key: "medium-gray");
+      margin-bottom: 0;
+    }
+  }
+
+  &.calories-card {
+    .img-container {
+      background-color: rgba(255, 0, 0, 0.1);
+    }
+  }
+  &.proteins-card {
+    .img-container {
+      background-color: rgba(74, 184, 255, 0.1);
+    }
+  }
+  &.carbohydrates-card {
+    .img-container {
+      background-color: rgba(249, 206, 35, 0.1);
+    }
+  }
+  &.lipids-card {
+    .img-container {
+      background-color: rgba(253, 81, 129, 0.1);
+    }
+  }
+}

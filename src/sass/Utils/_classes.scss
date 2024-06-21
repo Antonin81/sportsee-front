@@ -1,9 +1,15 @@
 .flex {
   display: flex;
-  gap: 30px;
+  gap: map-get($map: $gaps, $key: "big");
+  @media screen and (max-width: 1245px) {
+    gap: map-get($map: $gaps, $key: "small");
+  }
 }
 .flex-column {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: map-get($map: $gaps, $key: "big");
+  @media screen and (max-width: 1245px) {
+    gap: map-get($map: $gaps, $key: "small");
+  }
 }

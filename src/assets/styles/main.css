@@ -3,11 +3,21 @@
   display: flex;
   gap: 30px;
 }
+@media screen and (max-width: 1245px) {
+  .flex {
+    gap: 15px;
+  }
+}
 
 .flex-column {
   display: flex;
   flex-direction: column;
   gap: 30px;
+}
+@media screen and (max-width: 1245px) {
+  .flex-column {
+    gap: 15px;
+  }
 }
 
 body {
@@ -22,6 +32,10 @@ ul {
 
 li {
   list-style: none;
+}
+
+#root {
+  position: relative;
 }
 
 header {
@@ -101,6 +115,11 @@ header nav a {
 .bar-chart-container {
   padding: 25px 30px;
 }
+@media screen and (max-width: 1245px) {
+  .bar-chart-container {
+    padding: 15px 15px;
+  }
+}
 .bar-chart-container .top-section {
   display: flex;
   align-items: center;
@@ -169,6 +188,11 @@ header nav a {
   padding: 30px;
   padding-bottom: 0;
 }
+@media screen and (max-width: 1245px) {
+  .line-chart-container {
+    padding: 15px;
+  }
+}
 .line-chart-container h2 {
   color: rgba(255, 255, 255, 0.5);
   margin: 0;
@@ -209,9 +233,62 @@ header nav a {
 .radial-bar-chart-container {
   padding: 25px;
 }
+@media screen and (max-width: 1245px) {
+  .radial-bar-chart-container {
+    padding: 15px;
+  }
+}
 .radial-bar-chart-container h2 {
   font-size: 15px;
   margin: 0;
+}
+
+.keydata-card-container {
+  display: flex;
+  padding: 32px;
+  align-items: center;
+}
+@media screen and (max-width: 1245px) {
+  .keydata-card-container {
+    padding: 15px;
+  }
+}
+.keydata-card-container .img-container {
+  height: 60px;
+  width: 60px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 25px;
+}
+.keydata-card-container .txt-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.keydata-card-container .txt-container > p {
+  font-size: 20px;
+  font-weight: bold;
+  color: #282d30;
+  margin: 0;
+}
+.keydata-card-container .txt-container > h2 {
+  font-size: 14px;
+  color: #74798c;
+  margin-bottom: 0;
+}
+.keydata-card-container.calories-card .img-container {
+  background-color: rgba(255, 0, 0, 0.1);
+}
+.keydata-card-container.proteins-card .img-container {
+  background-color: rgba(74, 184, 255, 0.1);
+}
+.keydata-card-container.carbohydrates-card .img-container {
+  background-color: rgba(249, 206, 35, 0.1);
+}
+.keydata-card-container.lipids-card .img-container {
+  background-color: rgba(253, 81, 129, 0.1);
 }
 
 header {
@@ -224,7 +301,13 @@ header {
 main {
   margin-left: 114px;
   padding: 50px 100px;
-  height: calc(100vh - 190px);
+  min-height: calc(100vh - 190px);
+}
+@media screen and (max-width: 1350px) {
+  main {
+    padding: 25px 50px;
+    min-height: calc(100vh - 140px);
+  }
 }
 
 .side-nav {
@@ -253,7 +336,9 @@ h1 span {
 .chart-container {
   border-radius: 6px;
   background-color: #fbfbfb;
-  flex: 1;
+  flex-basis: 0;
+  flex-grow: 1;
+  flex-shrink: 1;
 }
 .chart-container svg {
   width: 100%;

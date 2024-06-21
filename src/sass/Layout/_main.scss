@@ -1,5 +1,9 @@
 main {
   margin-left: 114px;
   padding: 50px 100px;
-  height: calc(100vh - 190px);
+  min-height: calc(100vh - 190px);
+  @media screen and (max-width: 1350px) {
+    padding: 25px 50px;
+    min-height: calc(100vh - 140px);
+  }
 }

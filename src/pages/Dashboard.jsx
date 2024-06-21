@@ -10,6 +10,7 @@ import BarChart from "../components/BarChart";
 import LineChart from "../components/LineChart";
 import RadarChart from "../components/RadarChart";
 import RadialBarChart from "../components/RadialBarChart";
+import KeyDataCard from "../components/KeyDataCard";
 
 function Dashboard() {
   const { id } = useParams();
@@ -112,12 +113,26 @@ function Dashboard() {
               )}
             </div>
           </div>
-          <div className="flex-column charts-right-section">
-            <div className="chart-container"></div>
-            <div className="chart-container"></div>
-            <div className="chart-container"></div>
-            <div className="chart-container"></div>
-          </div>
+          {!allUserDataError && (
+            <div className="flex-column charts-right-section">
+              <KeyDataCard
+                data={allUserData.keyData.calorieCount}
+                dataName={"Calories"}
+              />
+              <KeyDataCard
+                data={allUserData.keyData.proteinCount}
+                dataName={"Proteines"}
+              />
+              <KeyDataCard
+                data={allUserData.keyData.carbohydrateCount}
+                dataName={"Glucides"}
+              />
+              <KeyDataCard
+                data={allUserData.keyData.lipidCount}
+                dataName={"Lipides"}
+              />
+            </div>
+          )}
         </div>
       </div>
     );
@@ -126,8 +141,8 @@ function Dashboard() {
   return (
     <React.Fragment>
       <HorizontalNav />
+      <VerticalNav />
       <main>
-        <VerticalNav />
         {allUserDataError && <ErrorComponent />}
         {!allUserDataError && <EndComponent />}
       </main>

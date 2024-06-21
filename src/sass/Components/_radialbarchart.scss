@@ -1,5 +1,8 @@
 .radial-bar-chart-container {
   padding: 25px;
+  @media screen and (max-width: 1245px) {
+    padding: 15px;
+  }
   h2 {
     font-size: map-get($map: $font-sizes, $key: "medium-small");
     margin: 0;

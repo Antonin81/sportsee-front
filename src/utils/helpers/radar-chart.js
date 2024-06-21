@@ -6,6 +6,8 @@ export function initRadarChart({ ref, data }) {
 
     const width = 250;
     const height = 250;
+    const viewboxWidth = width + 40;
+    const viewboxHeight = height + 40;
     const marginBlock = 50;
     const marginInline = 100;
 
@@ -60,9 +62,9 @@ export function initRadarChart({ ref, data }) {
         .append("svg")
         .attr("width", width)
         .attr("height", height)
-        .attr("viewBox", [0, 0, width, height])
+        .attr("viewBox", [0, 0, viewboxWidth, viewboxHeight])
         .append("g")
-        .attr("transform", `translate(${width / 2},${height / 2})`);
+        .attr("transform", `translate(${viewboxWidth / 2},${viewboxHeight / 2})`);
 
     const axisGrid = svg.append("g").attr("class", "axisWrapper");
 
