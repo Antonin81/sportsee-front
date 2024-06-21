@@ -1,9 +1,9 @@
 .keydata-card-container {
   display: flex;
-  padding: 32px;
+  padding-inline: 32px;
   align-items: center;
   @media screen and (max-width: 1245px) {
-    padding: 15px;
+    padding-inline: 15px;
   }
   .img-container {
     height: 60px;
