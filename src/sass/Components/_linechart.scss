@@ -1,7 +1,5 @@
 .line-chart-container {
   background-color: map-get($map: $colors, $key: "red") !important;
-  // height: 260px;
-  // width: 260px;
   padding: 30px;
   padding-bottom: 0;
   @media screen and (max-width: 1245px) {

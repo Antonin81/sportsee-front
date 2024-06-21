@@ -336,9 +336,7 @@ h1 span {
 .chart-container {
   border-radius: 6px;
   background-color: #fbfbfb;
-  flex-basis: 0;
-  flex-grow: 1;
-  flex-shrink: 1;
+  flex: 1;
 }
 .chart-container svg {
   width: 100%;

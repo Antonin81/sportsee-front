@@ -16,9 +16,7 @@ h1 span {
 .chart-container {
   border-radius: $border-radius;
   background-color: map-get($map: $colors, $key: "very-light-gray");
-  flex-basis: 0;
-  flex-grow: 1;
-  flex-shrink: 1;
+  flex: 1;
   svg {
     width: 100%;
   }
