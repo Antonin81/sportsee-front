@@ -5,24 +5,28 @@ function KeyDataCard({ data, dataName }) {
       cssClass: "calories-card",
       imgPath: "/img/calories.svg",
       unit: "kCal",
+      value: data / 1000,
     },
     {
       name: "Proteines",
       cssClass: "proteins-card",
       imgPath: "/img/proteins.svg",
       unit: "g",
+      value: data,
     },
     {
       name: "Glucides",
       cssClass: "carbohydrates-card",
       imgPath: "/img/carbohydrates.svg",
       unit: "g",
+      value: data,
     },
     {
       name: "Lipides",
       cssClass: "lipids-card",
       imgPath: "/img/lipids.svg",
       unit: "g",
+      value: data,
     },
   ];
 
@@ -44,7 +48,7 @@ function KeyDataCard({ data, dataName }) {
       </div>
       <div className="txt-container">
         <p>
-          {dataName === "Calories" ? data / 1000 : data}
+          {card.value}
           {card.unit}
         </p>
         <h2>{dataName}</h2>
