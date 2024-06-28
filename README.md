@@ -10,7 +10,8 @@ The objective of this project is to offer a dashboard to the user to see his spo
 
 ### Dashboard
 
-![Hompage img](public/readme-img/Homepage.png)
+![Dashboard image](https://github.com/Antonin81/sportsee-front/assets/78850000/ec1ffdc9-8f1a-428c-8053-ed6d2adf03c0)
+
 
 ## How to work on it
 
