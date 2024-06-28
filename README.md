@@ -15,9 +15,9 @@ The objective of this project is to offer a dashboard to the user to see his spo
 
 ## How to work on it
 
-This project uses React, Sass, npm, Eslint, Prettier and D3.js.
-This project is only the front end, for the back end go have a look [here](https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard).
-To work on it, fork the project.
+This project uses React, Sass, npm, Eslint, Prettier and D3.js.\
+This project is only the front end, for the back end go have a look [here](https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard).\
+To work on it, fork the project.\
 Here are the executable commands :
 
 ### `npm start`
