@@ -1,3 +1,9 @@
+/**
+ * Creates a KeyDataCard element with given data and dataName
+ *
+ * @param {{data: object, dataName: string}}
+ * @returns {React.JSX.Element}
+ */
 function KeyDataCard({ data, dataName }) {
   const cardInfos = [
     {
@@ -30,6 +36,12 @@ function KeyDataCard({ data, dataName }) {
     },
   ];
 
+  /**
+   * retrieves the datas from {@link cardInfos} with a given dataName
+   *
+   * @param {string} dataName
+   * @returns
+   */
   function selectData(dataName) {
     for (let card of cardInfos) {
       if (card.name === dataName) {

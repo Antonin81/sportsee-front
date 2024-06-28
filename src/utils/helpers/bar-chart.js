@@ -1,5 +1,10 @@
 import * as d3 from "d3";
 
+/**
+ * Initializes the bar chart with given data and displays it in the element from which comes ref
+ * 
+ * @param {{ ref: React.MutableRefObject, data: object }} 
+ */
 export function initBarChart({ ref, data }) {
     const width = 800;
     const height = 150;
@@ -11,23 +16,34 @@ export function initBarChart({ ref, data }) {
     const minWeight = d3.min(data, (d) => d.kilogram);
     const maxWeight = d3.max(data, (d) => d.kilogram);
 
+    //virtual x axis with numbers starting from 1 as domain
     const x = d3
         .scaleBand()
         .domain(
             indexesArray(data)
         )
         .range([marginLeft, width - marginRight]);
+
+    //virtual y1 axis with calories data as domain
     const y1 = d3
         .scaleLinear()
         .domain([0, d3.max(data, (d) => d.calories)])
         .nice()
         .range([height - marginBottom, marginTop]);
+
+    //virtual y2 axis with weight data as domain
     const y2 = d3
         .scaleLinear()
         .domain([minWeight - 1, d3.max(data, (d) => d.kilogram)])
         .nice()
         .range([height - marginBottom, marginTop]);
 
+    /**
+     * creates an array with the sale length than the given array with numbers starting from 1
+     * 
+     * @param {any[]} array 
+     * @returns 
+     */
     function indexesArray(array) {
         let arrayToReturn = [];
         for (let i = 0; i < array.length; i++) {
@@ -35,6 +51,13 @@ export function initBarChart({ ref, data }) {
         }
         return arrayToReturn;
     }
+
+    /**
+     * Reacts to a mouseover by displaying a tooltip with the right data and highlighting the hovered data
+     * 
+     * @param {MouseEvent} e the event object
+     * @param {object} d the data associated with the event
+     */
     function mouseOver(e, d) {
         const mx = e.pageX - ref.current.offsetLeft;
         const my = e.pageY - ref.current.offsetTop;
@@ -47,6 +70,13 @@ export function initBarChart({ ref, data }) {
             .style("display", `block`)
             .html(`<p>${d.kilogram}kg</p><p>${d.calories}Kcal</p>`);
     }
+
+    /**
+     * Reacts to a mouseout by stop displaying the displayed tooltip and stop highlighting the previously hovered data
+     * 
+     * @param {MouseEvent} e the event object
+     * @param {object} d the data associated with the event
+     */
     function mouseOut(e, d) {
         d3.selectAll(".back-rectangle")
             .filter((data) => data === d)
@@ -54,9 +84,10 @@ export function initBarChart({ ref, data }) {
         d3.select(".bar-chart-tooltip").style("display", "none");
     }
 
+    //empties the graph if exists
     d3.select(ref.current).select("svg").remove();
 
-
+    //creates the svg container
     const svg = d3
         .select(ref.current)
         .append("svg")
@@ -64,6 +95,7 @@ export function initBarChart({ ref, data }) {
         .attr("height", height)
         .attr("viewBox", [0, 0, width, height]);
 
+    //displays the y2 axis
     svg
         .append("g")
         .attr("transform", `translate(${width - marginRight},0)`)
@@ -78,8 +110,10 @@ export function initBarChart({ ref, data }) {
         .selectAll("line")
         .attr("stroke-dasharray", "3, 3");
 
+    //removes the line of the axis, leaving nothing but the labels and horizontal lines 
     svg.select(".domain").remove();
 
+    //displays the x axis
     svg
         .append("g")
         .attr("transform", `translate(0,${height - marginBottom})`)
@@ -89,8 +123,10 @@ export function initBarChart({ ref, data }) {
         .selectAll(".domain")
         .attr("stroke", "#dedede");
 
+    //adds "barchart-label" to the labels class for styling
     svg.selectAll(".tick text").attr("class", "barchart-label");
 
+    //adds bars in the background to hover effect
     svg
         .append("g")
         .selectAll("rect")
@@ -104,6 +140,7 @@ export function initBarChart({ ref, data }) {
         .attr("width", 56)
         .attr("rx", 3);
 
+    //adds bars for each calories data
     svg
         .append("g")
         .attr("fill", "#E60000")
@@ -116,6 +153,7 @@ export function initBarChart({ ref, data }) {
         .attr("width", 7)
         .attr("rx", 3);
 
+    //adds bars for each weight data
     svg
         .append("g")
         .attr("fill", "#282D30")
@@ -128,6 +166,7 @@ export function initBarChart({ ref, data }) {
         .attr("width", 7)
         .attr("rx", 3);
 
+    //adds bars in the foreground to detect hover effect
     svg
         .append("g")
         .selectAll(".forward-rectangle")

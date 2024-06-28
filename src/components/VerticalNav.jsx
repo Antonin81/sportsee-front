@@ -1,5 +1,10 @@
 import { Link, useParams } from "react-router-dom";
 
+/**
+ * Creates the sidenav element
+ *
+ * @returns {React.JSX.Element}
+ */
 function VerticalNav() {
   const { id } = useParams();
   return (

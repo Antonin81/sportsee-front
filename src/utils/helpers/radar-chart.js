@@ -1,5 +1,10 @@
 import * as d3 from "d3";
 
+/**
+ * Initializes the radar chart with given data and displays it in the element from which comes ref
+ * 
+ * @param {{ ref: React.MutableRefObject, data: object }} 
+ */
 export function initRadarChart({ ref, data }) {
     const dataToDisplay = data.data;
     const kind = data.kind;
@@ -17,18 +22,36 @@ export function initRadarChart({ ref, data }) {
     const radius = diameter / 2;
     const anglePortion = Math.PI * 2 / dataToDisplay.length;
 
+    //d3 function to generate an axis
     const generateScale = d3.scaleLinear().range([0, radius]).domain([0, maxValue]);
     const allAxis = (dataToDisplay.map((d) => kind[d.kind]));
+
+    //d3 function that draws the regular polygon joining all the axis at the same level, playing with the amount of levels and angle rotation
     const radarLine = d3.lineRadial()
         .curve(d3.curveLinearClosed)
         .radius(d => radius * d)
         .angle((d, i) => i * anglePortion);
+
+    //d3 function to generate the data area in the radar chart
     const radarArea = radarLine(dataToDisplay.map(d => d.value / maxValue));
 
+    /**
+     * calculate the angle of each corner of the regular polygon depending oh a given i level, rotated to reach each corner properly
+     * 
+     * @param {number} i 
+     * @returns 
+     */
     function calculateAngle(i) {
         return anglePortion * i - Math.PI / 2;
     }
-    function translateX(d, i) {
+
+    /**
+     * Adjusts the labels position horizontally
+     * 
+     * @param {number} i 
+     * @returns {string}
+     */
+    function translateX(i) {
         const angle = calculateAngle(i);
         const endX = Math.cos(angle);
         if (endX < 0.0) {
@@ -41,7 +64,14 @@ export function initRadarChart({ ref, data }) {
             return "0";
         }
     }
-    function translateY(d, i) {
+
+    /**
+     * Adjusts the labels position vertically
+     * 
+     * @param {number} i 
+     * @returns {string}
+     */
+    function translateY(i) {
         const angle = calculateAngle(i);
         const endY = Math.sin(angle);
         if (endY < 0.0) {
@@ -55,8 +85,10 @@ export function initRadarChart({ ref, data }) {
         }
     }
 
+    //empties the graph if exists
     d3.select(ref.current).select("svg").remove();
 
+    //creates the svg container
     const svg = d3
         .select(ref.current)
         .append("svg")
@@ -66,8 +98,10 @@ export function initRadarChart({ ref, data }) {
         .append("g")
         .attr("transform", `translate(${viewboxWidth / 2},${viewboxHeight / 2})`);
 
+    //creates the container of the axisgrid
     const axisGrid = svg.append("g").attr("class", "axisWrapper");
 
+    //draws all the axis polygons
     axisGrid
         .selectAll(".grid-polygon")
         .data(d3.range(1, levels + 1).reverse())
@@ -79,6 +113,7 @@ export function initRadarChart({ ref, data }) {
         .attr("stroke", "white")
         .attr("stroke-width", "2px");
 
+    //adds the labels' containers
     const axis = axisGrid
         .selectAll(".axis")
         .data(allAxis)
@@ -86,15 +121,17 @@ export function initRadarChart({ ref, data }) {
         .append("g")
         .attr("class", "axis");
 
+    //adds the labels
     axis.append("text")
         .attr("class", "legend-radar-chart")
         .attr("text-anchor", "middle")
         .attr("dy", "5.5px")
         .attr("x", (d, i) => generateScale(maxValue) * Math.cos(calculateAngle(i)))
         .attr("y", (d, i) => generateScale(maxValue) * Math.sin(calculateAngle(i)))
-        .attr("transform", (d, i) => `translate(${translateX(d, i)},${translateY(d, i)})`)
+        .attr("transform", (d, i) => `translate(${translateX(i)},${translateY(i)})`)
         .text(d => d);
 
+    //draws the data radar area
     svg.append("path")
         .attr("class", "radarArea")
         .attr("d", radarArea)

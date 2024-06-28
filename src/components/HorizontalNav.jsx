@@ -1,5 +1,10 @@
 import { Link, useParams } from "react-router-dom";
 
+/**
+ * Creates the header element
+ *
+ * @returns {React.JSX.Element}
+ */
 function HorizontalNav() {
   const { id } = useParams();
   return (

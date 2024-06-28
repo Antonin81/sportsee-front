@@ -1,6 +1,12 @@
 import { useFetch } from "./useFetch";
 import { useState, useEffect } from "react";
 
+/**
+ * uses Usefetch to fetch the objective completion score, the keydatas and personal infos of a user with his id. Returns a data object and two booleans : one to say if the data is loading and one to say if it failed
+ *
+ * @param {number} id
+ * @returns {{data: object,isLoading: boolean,error: boolean}}
+ */
 export function useFetchAllUserInfos(id) {
   const { data, isDataLoading, error } = useFetch(`/user/${id}`);
   const [isLoading, setIsLoading] = useState(true);
@@ -10,7 +16,6 @@ export function useFetchAllUserInfos(id) {
   const [errorHere, setErrorHere] = useState(error);
   useEffect(() => {
     if (!isDataLoading && data) {
-      console.log(data.data);
       if (
         !data.data ||
         !data.data.userInfos ||

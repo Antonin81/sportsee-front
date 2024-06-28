@@ -12,6 +12,11 @@ import RadarChart from "../components/RadarChart";
 import RadialBarChart from "../components/RadialBarChart";
 import KeyDataCard from "../components/KeyDataCard";
 
+/**
+ * Creates the Dashboard Page element
+ *
+ * @returns {React.JSX.Element}
+ */
 function Dashboard() {
   const { id } = useParams();
 
@@ -39,6 +44,11 @@ function Dashboard() {
     error: allUserDataError,
   } = useFetchAllUserInfos(id);
 
+  /**
+   * Creates an element to display in case of failed data fetching
+   *
+   * @returns {React.JSX.Element}
+   */
   function ErrorComponent() {
     if (id != null) {
       return (
@@ -51,6 +61,11 @@ function Dashboard() {
     return <h1>Votre url est incorrecte...</h1>;
   }
 
+  /**
+   * Creates the content page element
+   *
+   * @returns {React.JSX.Element}
+   */
   function EndComponent() {
     if (
       isAllUserDataLoading ||
@@ -78,44 +93,41 @@ function Dashboard() {
     );
   }
 
+  /**
+   * Creates the charts section element
+   *
+   * @returns {React.JSX.Element}
+   */
   function ChartSectionComponent() {
     return (
       <div id="charts-section">
         <div className="flex">
           <div className="flex-column charts-left-section">
-            {!userActivityError && <BarChart data={userActivity} />}
+            <BarChart data={userActivity} />
             <div className="flex">
-              {!userAverageSessionsError && (
-                <LineChart data={userAverageSessions} />
-              )}
-              {!userActivityTypesError && (
-                <RadarChart data={userActivityTypes} />
-              )}
-              {!allUserDataError && (
-                <RadialBarChart data={allUserData.objectiveCompletion} />
-              )}
+              <LineChart data={userAverageSessions} />
+              <RadarChart data={userActivityTypes} />
+              <RadialBarChart data={allUserData.objectiveCompletion} />
             </div>
           </div>
-          {!allUserDataError && (
-            <div className="flex-column charts-right-section">
-              <KeyDataCard
-                data={allUserData.keyData.calorieCount}
-                dataName={"Calories"}
-              />
-              <KeyDataCard
-                data={allUserData.keyData.proteinCount}
-                dataName={"Proteines"}
-              />
-              <KeyDataCard
-                data={allUserData.keyData.carbohydrateCount}
-                dataName={"Glucides"}
-              />
-              <KeyDataCard
-                data={allUserData.keyData.lipidCount}
-                dataName={"Lipides"}
-              />
-            </div>
-          )}
+          <div className="flex-column charts-right-section">
+            <KeyDataCard
+              data={allUserData.keyData.calorieCount}
+              dataName={"Calories"}
+            />
+            <KeyDataCard
+              data={allUserData.keyData.proteinCount}
+              dataName={"Proteines"}
+            />
+            <KeyDataCard
+              data={allUserData.keyData.carbohydrateCount}
+              dataName={"Glucides"}
+            />
+            <KeyDataCard
+              data={allUserData.keyData.lipidCount}
+              dataName={"Lipides"}
+            />
+          </div>
         </div>
       </div>
     );
@@ -126,8 +138,14 @@ function Dashboard() {
       <HorizontalNav />
       <VerticalNav />
       <main>
-        {allUserDataError && <ErrorComponent />}
-        {!allUserDataError && <EndComponent />}
+        {(allUserDataError ||
+          userActivityError ||
+          userActivityTypesError ||
+          userAverageSessionsError) && <ErrorComponent />}
+        {!allUserDataError &&
+          !userActivityError &&
+          !userActivityTypesError &&
+          !userAverageSessionsError && <EndComponent />}
       </main>
     </React.Fragment>
   );

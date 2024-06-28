@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
 
+/**
+ * fetches data on a given url and returns a data object and two booleans : one to say if the data is loading and one to say if it failed
+ *
+ * @param {string} url
+ * @returns {{data: object,isDataLoading: boolean,error: boolean}}
+ */
 export function useFetch(url) {
   const [data, setData] = useState({});
   const [isDataLoading, setIsDataLoading] = useState(true);

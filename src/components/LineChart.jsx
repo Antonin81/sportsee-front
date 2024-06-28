@@ -1,6 +1,12 @@
 import { React, useEffect, useRef } from "react";
 import { initLineChart } from "../utils/helpers/line-chart";
 
+/**
+ * Creates the linechart element with given data
+ *
+ * @param {{data: object}}
+ * @returns {React.JSX.Element}
+ */
 function LineChart({ data }) {
   const ref = useRef();
 

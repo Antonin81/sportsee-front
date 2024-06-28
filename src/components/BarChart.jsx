@@ -1,6 +1,12 @@
 import { React, useEffect, useRef } from "react";
 import { initBarChart } from "../utils/helpers/bar-chart";
 
+/**
+ * Creates the barchart element with given data
+ *
+ * @param {{data: object}}
+ * @returns {React.JSX.Element}
+ */
 function BarChart({ data }) {
   const ref = useRef();
 

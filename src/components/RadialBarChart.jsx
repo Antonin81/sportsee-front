@@ -1,6 +1,12 @@
 import { initRadialBarChart } from "../utils/helpers/radial-bar-chart";
 import { useRef, useEffect } from "react";
 
+/**
+ * Creates the radialbarchart element with given data
+ *
+ * @param {{data: object}}
+ * @returns {React.JSX.Element}
+ */
 function RadialBarChart({ data }) {
   const ref = useRef();
 
