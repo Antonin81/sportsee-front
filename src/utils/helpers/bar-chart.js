@@ -42,7 +42,7 @@ export function initBarChart({ ref, data }) {
      * creates an array with the sale length than the given array with numbers starting from 1
      * 
      * @param {any[]} array 
-     * @returns 
+     * @returns {Number[]}
      */
     function indexesArray(array) {
         let arrayToReturn = [];
