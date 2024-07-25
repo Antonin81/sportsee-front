@@ -9,7 +9,6 @@ import { useRef, useEffect } from "react";
  */
 function RadarChart({ data }) {
   const ref = useRef();
-  console.log(data.data);
   useEffect(() => {
     if (data != null) {
       initRadarChart({ ref, data });
