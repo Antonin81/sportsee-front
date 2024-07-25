@@ -39,7 +39,7 @@ export function initBarChart({ ref, data }) {
         .range([height - marginBottom, marginTop]);
 
     /**
-     * creates an array with the sale length than the given array with numbers starting from 1
+     * creates an array with the same length than the given array with numbers starting from 1
      * 
      * @param {any[]} array 
      * @returns {Number[]}
